@@ -4,16 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zed.dao.UserDao">
-    <select id="findAll" resultType="com.zed.model.User">
-        select * from user_table
-    </select>
-    <select id="login" parameterType="com.zed.model.User" resultType="com.zed.model.User">
-        select * from user_table
-            where name = #{name}
-            and password=#{password}
-    </select>
+
     <insert id="register" parameterType="com.zed.model.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user_table (name,password)
-        VALUES (#{name},#{password})
+        INSERT INTO user_table
+        (name,password,gender,hobby,regDate,userInfo,avatar,homeAddress,workAddress)
+        VALUES
+        (#{name},#{password},#{gender},#{hobby},#{regDate},#{userInfo},#{avatar},#{homeAddress},#{workAddress})
     </insert>
 </mapper>

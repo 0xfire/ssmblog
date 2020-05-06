@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>注册成功</title>
 </head>
 <body>
-<h1>hello cdu</h1>
+<h1>注册成功</h1>
+注册信息为：<%=request.getSession().getAttribute("user") %>
 </body>
 </html>
