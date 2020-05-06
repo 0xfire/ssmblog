@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zed.dao.UserDao">
+    <select id="findAll" resultType="com.zed.model.User">
+        select * from user_table
+    </select>
+    <select id="login" parameterType="com.zed.model.User" resultType="com.zed.model.User">
+        select * from user_table
+            where name = #{name}
+            and password=#{password}
+    </select>
+    <insert id="register" parameterType="com.zed.model.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_table (name,password)
+        VALUES (#{name},#{password})
+    </insert>
+</mapper>
