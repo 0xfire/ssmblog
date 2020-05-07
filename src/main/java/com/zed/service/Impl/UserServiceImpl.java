@@ -7,9 +7,6 @@ import com.zed.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.List;
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -20,18 +17,10 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
-    @Override
-    public List<User> findAll(){
-        return userDao.findAll();
-    }
 
     @Override
-    public boolean login(User user) {
-        return userDao.login(user);
-    }
+    public int register(User user) {
 
-    @Override
-    public boolean register(User user) {
-        return userDao.register(user);
+        return userDao.insert(user);
     }
 }

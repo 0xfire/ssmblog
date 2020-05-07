@@ -15,16 +15,16 @@
                 <property name="username" value="${jdbc.username}" />
                 <property name="password" value="${jdbc.password}" />
         </bean>
-
+        <!--配置sqlSessionFactory对象：注入数据库连接池，并扫描对象关系映射的配置文件mapper-->
         <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
                 <property name="dataSource" ref="dataSource" />
-                <property name="mapperLocations" value="classpath:mapper/*.xml" />
+            <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
         </bean>
-
+    <!--事务处理-->
         <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" >
                 <constructor-arg index="0" ref="sqlSessionFactory" />
         </bean>
-
+    <!--整合Mybatis和spring-->
         <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
                 <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
                 <property name="basePackage" value="com.zed.dao" />

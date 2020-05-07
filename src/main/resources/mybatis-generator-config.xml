@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- 本地数据库驱动程序jar包的全路径 -->
+    <classPathEntry
+            location="D:\Program Files\apache-maven-3.6.1\maven_repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/>
+
+    <!-- 指定mybatis版本 -->
+    <context id="context" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库的相关配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/mydb?serverTimeZone=UTC"
+                        userId="root"
+                        password="root"/>
+
+        <!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 实体类生成的位置  修改targetPackage和targetProject-->
+        <javaModelGenerator targetPackage="com.zed.test" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- *Mapper.xml 文件的位置  修改targetPackage和targetProject-->
+        <sqlMapGenerator targetPackage="com.zed.test" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- Mapper 接口文件的位置  修改targetPackage和targetProject-->
+        <javaClientGenerator targetPackage="com.zed.test" targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 相关表的配置 多表就配置多个  tableName表名  domainObjectName类名 -->
+        <table tableName="user_table" domainObjectName="User" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false"/>
+        <!--       <table tableName="car" domainObjectName="Car" enableCountByExample="false"
+                      enableDeleteByExample="false" enableSelectByExample="false"
+                      enableUpdateByExample="false"/>-->
+    </context>
+</generatorConfiguration>
