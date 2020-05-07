@@ -6,4 +6,6 @@ public interface UserService {
 
     int register(User user);
 
+    User login(String username, String password);
+    //boolean finAll();
 }

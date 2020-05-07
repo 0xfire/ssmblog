@@ -4,6 +4,7 @@ package com.zed.controller;
 import com.zed.model.User;
 import com.zed.service.UserService;
 import com.zed.utils.fileUpload;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,15 +36,21 @@ public class UserController {
         return "user";
     }*/
 
-//    @RequestMapping(value = "/login",method = RequestMethod.POST)
-//    public String login(User user){
-//
-//        boolean loginStatus=userService.login(user);
-//        if (loginStatus==true){
-//            System.out.println("登录成功");
-//        }
-//        return "user";
-//    }
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(HttpServletRequest request) {
+
+        User current = userService.login(request.getParameter("username"), request.getParameter("password"));
+        if (current != null) {
+            System.out.println("登录成功");
+        }
+        request.getSession().setAttribute("user", current.getName());
+        return "user";
+    }
 
     @GetMapping("/register")
     public String register() {
