@@ -11,11 +11,10 @@
     <!-- 指定mybatis版本 -->
     <context id="context" targetRuntime="MyBatis3">
         <commentGenerator>
-            <property name="suppressAllComments" value="false"/>
+            <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
 
-        <!-- 数据库的相关配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/mydb?serverTimeZone=UTC"
                         userId="root"
@@ -44,7 +43,7 @@
         </javaClientGenerator>
 
         <!-- 相关表的配置 多表就配置多个  tableName表名  domainObjectName类名 -->
-        <table tableName="user_table" domainObjectName="User" enableCountByExample="false"
+        <table tableName="user" domainObjectName="User" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false"/>
         <!--       <table tableName="car" domainObjectName="Car" enableCountByExample="false"

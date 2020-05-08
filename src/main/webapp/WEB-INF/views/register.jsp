@@ -16,8 +16,10 @@
     <input type="checkbox" name="hobby" value="english">英语<br/>
 
     个人信息：<input type="text" name="userInfo" required><br>
-    家庭地址：<input type="text" name="homeAddress" required><br>
-    工作地址：<input type="text" name="workAddress" required><br>
+    家庭地址：<input type="text" name="addresses[0].userAddress" required><br>
+    <input type="hidden" value="homeAddress" name="addresses[0].type">
+    工作地址：<input type="text" name="addresses[1].userAddress" required><br>
+    <input type="hidden" value="workAddress" name="addresses[1].type">
     头像：<input type="file" name="userAvatar">
     <input type="submit" value="注册">
 </form>

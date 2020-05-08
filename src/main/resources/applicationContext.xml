@@ -4,8 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-        <context:component-scan base-package="com.zed" />
-
+        <context:component-scan base-package="com.zed.service"/>
         <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true" />
 
         <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -27,7 +26,7 @@
     <!--整合Mybatis和spring-->
         <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
                 <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-                <property name="basePackage" value="com.zed.dao" />
+                <property name="basePackage" value="com.zed.mapper" />
         </bean>
 
 </beans>

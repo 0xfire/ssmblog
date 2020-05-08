@@ -12,6 +12,6 @@
 </head>
 <body>
 <h1>注册成功</h1>
-注册信息为：<%=request.getSession().getAttribute("user") %>
+注册信息为：<%=request.getSession().getAttribute("USER_SESSION") %>
 </body>
 </html>
