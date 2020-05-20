@@ -50,5 +50,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public User login(User user){
 
+        return userMapper.login(user);
+    }
 }

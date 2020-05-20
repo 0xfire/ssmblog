@@ -37,6 +37,16 @@ public class User implements Serializable {
     
     private String workAddress;
 
+    private List<Role> roles;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     private List<Address> addresses;
 
     public List<Address> getAddresses() {

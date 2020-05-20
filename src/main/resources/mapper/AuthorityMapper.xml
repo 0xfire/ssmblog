@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zed.mapper.AuthorityMapper">
+
+    <resultMap type="com.zed.pojo.Authority" id="AuthorityMap">
+        <result property="role" column="role" jdbcType="VARCHAR"/>
+        <result property="permissions" column="permissions" jdbcType="VARCHAR"/>
+        <result property="permissionsUrl" column="permissions_url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryPermissions" resultMap="AuthorityMap">
+        select
+          role,permissions, permissions_url
+        from mydb.authority
+        where role= #{role}
+    </select>
+
+</mapper>

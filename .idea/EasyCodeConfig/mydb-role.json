@@ -1,0 +1,24 @@
+{
+  "name" : "Role",
+  "comment" : null,
+  "fullColumn" : [ {
+    "name" : "user",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "role",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.zed",
+  "savePath" : "./src/main/java/com/zed",
+  "saveModelName" : "PRO"
+}

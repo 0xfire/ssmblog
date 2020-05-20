@@ -1,195 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zed.dao.UserDao">
-  <resultMap id="BaseResultMap" type="com.zed.model.User">
+<mapper namespace="com.zed.mapper.UserMapper">
 
-  <id column="id" jdbcType="INTEGER" property="id"/>
-    <result column="name" jdbcType="VARCHAR" property="name"/>
-    <result column="password" jdbcType="VARCHAR" property="password"/>
-    <result column="gender" jdbcType="VARCHAR" property="gender"/>
-    <result column="hobby" jdbcType="VARCHAR" property="hobby"/>
-    <result column="regDate" jdbcType="VARCHAR" property="regdate"/>
-    <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
-    <result column="homeAddress" jdbcType="VARCHAR" property="homeaddress"/>
-    <result column="workAddress" jdbcType="VARCHAR" property="workaddress"/>
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zed.model.User">
+    <resultMap type="com.zed.pojo.User" id="UserMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="VARCHAR"/>
+        <result property="hobby" column="hobby" jdbcType="VARCHAR"/>
+        <result property="regDate" column="reg_date" jdbcType="VARCHAR"/>
+        <result property="userInfo" column="user_info" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="homeAddress" column="home_address" jdbcType="VARCHAR"/>
+        <result property="workAddress" column="work_address" jdbcType="VARCHAR"/>
+        <collection property="roles" ofType="com.zed.pojo.Role">
+            <result property="user" column="user" jdbcType="VARCHAR"/>
+            <result property="role" column="role" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
 
-  <result column="userInfo" jdbcType="LONGVARBINARY" property="userinfo"/>
-  </resultMap>
-  <sql id="Base_Column_List">
 
-    id, name, password, gender, hobby, regDate, avatar, homeAddress, workAddress
-  </sql>
-  <sql id="Blob_Column_List">
+    <sql id="allColumns">
+        id,name, password, gender, hobby, reg_date, user_info, avatar, home_address, work_address
+    </sql>
+    <!--新增所有列-->
+    <insert id="register" keyProperty="id" useGeneratedKeys="true">
+        insert into mydb.user(id,name, password, gender, hobby, reg_date, user_info, avatar, home_address, work_address)
+        values (#{id}, #{name}, #{password}, #{gender}, #{hobby}, #{regDate}, #{userInfo}, #{avatar}, #{homeAddress}, #{workAddress})
+    </insert>
 
-    userInfo
-  </sql>
 
-  <select id="login" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
-
-  select
-    <include refid="Base_Column_List"/>
-    ,
-    <include refid="Blob_Column_List"/>
-    from user_table
-    where name = #{username,jdbcType=VARCHAR}
-    and password = #{password,jdbcType=VARCHAR}
-    limit 0,1
-  </select>
-
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-
-  select
-    <include refid="Base_Column_List"/>
-    ,
-    <include refid="Blob_Column_List"/>
-    from user_table
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-
-    delete from user_table
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.zed.model.User">
-
-    insert into user_table (id, name, password,
-    gender, hobby, regDate,
-    avatar, homeAddress, workAddress,
-    userInfo)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-    #{gender,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{regdate,jdbcType=VARCHAR},
-    #{avatar,jdbcType=VARCHAR}, #{homeaddress,jdbcType=VARCHAR}, #{workaddress,jdbcType=VARCHAR},
-    #{userinfo,jdbcType=LONGVARBINARY})
-  </insert>
-  <insert id="insertSelective" parameterType="com.zed.model.User">
-
-  insert into user_table
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="gender != null">
-        gender,
-      </if>
-      <if test="hobby != null">
-        hobby,
-      </if>
-      <if test="regdate != null">
-        regDate,
-      </if>
-      <if test="avatar != null">
-        avatar,
-      </if>
-      <if test="homeaddress != null">
-        homeAddress,
-      </if>
-      <if test="workaddress != null">
-        workAddress,
-      </if>
-      <if test="userinfo != null">
-        userInfo,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        #{gender,jdbcType=VARCHAR},
-      </if>
-      <if test="hobby != null">
-        #{hobby,jdbcType=VARCHAR},
-      </if>
-      <if test="regdate != null">
-        #{regdate,jdbcType=VARCHAR},
-      </if>
-      <if test="avatar != null">
-        #{avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="homeaddress != null">
-        #{homeaddress,jdbcType=VARCHAR},
-      </if>
-      <if test="workaddress != null">
-        #{workaddress,jdbcType=VARCHAR},
-      </if>
-      <if test="userinfo != null">
-        #{userinfo,jdbcType=LONGVARBINARY},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zed.model.User">
-
-  update user_table
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        gender = #{gender,jdbcType=VARCHAR},
-      </if>
-      <if test="hobby != null">
-        hobby = #{hobby,jdbcType=VARCHAR},
-      </if>
-      <if test="regdate != null">
-        regDate = #{regdate,jdbcType=VARCHAR},
-      </if>
-      <if test="avatar != null">
-        avatar = #{avatar,jdbcType=VARCHAR},
-      </if>
-      <if test="homeaddress != null">
-        homeAddress = #{homeaddress,jdbcType=VARCHAR},
-      </if>
-      <if test="workaddress != null">
-        workAddress = #{workaddress,jdbcType=VARCHAR},
-      </if>
-      <if test="userinfo != null">
-        userInfo = #{userinfo,jdbcType=LONGVARBINARY},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zed.model.User">
-
-    update user_table
-    set name = #{name,jdbcType=VARCHAR},
-    password = #{password,jdbcType=VARCHAR},
-    gender = #{gender,jdbcType=VARCHAR},
-    hobby = #{hobby,jdbcType=VARCHAR},
-    regDate = #{regdate,jdbcType=VARCHAR},
-    avatar = #{avatar,jdbcType=VARCHAR},
-    homeAddress = #{homeaddress,jdbcType=VARCHAR},
-    workAddress = #{workaddress,jdbcType=VARCHAR},
-    userInfo = #{userinfo,jdbcType=LONGVARBINARY}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zed.model.User">
-
-    update user_table
-    set name = #{name,jdbcType=VARCHAR},
-    password = #{password,jdbcType=VARCHAR},
-    gender = #{gender,jdbcType=VARCHAR},
-    hobby = #{hobby,jdbcType=VARCHAR},
-    regDate = #{regdate,jdbcType=VARCHAR},
-    avatar = #{avatar,jdbcType=VARCHAR},
-    homeAddress = #{homeaddress,jdbcType=VARCHAR},
-    workAddress = #{workaddress,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <select id="login" parameterType="com.zed.pojo.User" resultMap="UserMap">
+        select
+         <include refid="allColumns"></include>
+         from mydb.user where name=#{name} and password=#{password} limit 0,1
+    </select>
 </mapper>

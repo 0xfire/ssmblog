@@ -1,0 +1,31 @@
+{
+  "name" : "Authority",
+  "comment" : null,
+  "fullColumn" : [ {
+    "name" : "role",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "permissions",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "permissionsUrl",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.zed",
+  "savePath" : "./src/main/java/com/zed",
+  "saveModelName" : "PRO"
+}
