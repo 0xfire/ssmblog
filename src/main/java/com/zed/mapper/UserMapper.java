@@ -15,4 +15,6 @@ public interface UserMapper {
     void register(User user);
 
     User login(User user);
+
+    List<User> find();
 }
