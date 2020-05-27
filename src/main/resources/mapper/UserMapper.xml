@@ -2,37 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zed.mapper.UserMapper">
 
-    <resultMap type="com.zed.pojo.User" id="UserMap">
-        <result property="id" column="id" jdbcType="VARCHAR"/>
-        <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="password" column="password" jdbcType="VARCHAR"/>
-        <result property="gender" column="gender" jdbcType="VARCHAR"/>
-        <result property="hobby" column="hobby" jdbcType="VARCHAR"/>
-        <result property="regDate" column="reg_date" jdbcType="VARCHAR"/>
-        <result property="userInfo" column="user_info" jdbcType="VARCHAR"/>
-        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
-        <result property="homeAddress" column="home_address" jdbcType="VARCHAR"/>
-        <result property="workAddress" column="work_address" jdbcType="VARCHAR"/>
-        <collection property="roles" ofType="com.zed.pojo.Role">
-            <result property="user" column="user" jdbcType="VARCHAR"/>
-            <result property="role" column="role" jdbcType="VARCHAR"/>
-        </collection>
-    </resultMap>
+  <resultMap type="com.zed.pojo.User" id="UserMap">
+    <result property="id" column="id" jdbcType="VARCHAR"/>
+    <result property="name" column="name" jdbcType="VARCHAR"/>
+    <result property="password" column="password" jdbcType="VARCHAR"/>
+    <result property="gender" column="gender" jdbcType="VARCHAR"/>
+    <result property="hobby" column="hobby" jdbcType="VARCHAR"/>
+    <result property="regDate" column="reg_date" jdbcType="VARCHAR"/>
+    <result property="userInfo" column="user_info" jdbcType="VARCHAR"/>
+    <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+    <result property="homeAddress" column="home_address" jdbcType="VARCHAR"/>
+    <result property="workAddress" column="work_address" jdbcType="VARCHAR"/>
+    <collection property="addresses" ofType="com.zed.pojo.Address" notNullColumn="id2">
+      <id property="id" column="id2" jdbcType="VARCHAR"/>
+      <result property="type" column="type" jdbcType="VARCHAR"/>
+      <result property="userAddress" column="userAddress" jdbcType="VARCHAR"/>
+      <result property="userId" column="userId" jdbcType="VARCHAR"/>
+    </collection>
+  </resultMap>
 
-
-    <sql id="allColumns">
-        id,name, password, gender, hobby, reg_date, user_info, avatar, home_address, work_address
-    </sql>
-    <!--新增所有列-->
-    <insert id="register" keyProperty="id" useGeneratedKeys="true">
+  <!--新增所有列-->
+  <insert id="register" keyProperty="id" useGeneratedKeys="true">
         insert into mydb.user(id,name, password, gender, hobby, reg_date, user_info, avatar, home_address, work_address)
         values (#{id}, #{name}, #{password}, #{gender}, #{hobby}, #{regDate}, #{userInfo}, #{avatar}, #{homeAddress}, #{workAddress})
     </insert>
 
-
-    <select id="login" parameterType="com.zed.pojo.User" resultMap="UserMap">
-        select
-         <include refid="allColumns"></include>
-         from mydb.user where name=#{name} and password=#{password} limit 0,1
-    </select>
 </mapper>
