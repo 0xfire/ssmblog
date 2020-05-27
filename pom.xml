@@ -25,7 +25,7 @@
         <mybatis.version>3.5.4</mybatis.version>
         <mybatis.spring.version>2.0.3</mybatis.spring.version>
         <junit.version>4.12</junit.version>
-        <jackson.version>2.9.5</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
     </properties>
 
     <dependencies>
@@ -205,7 +205,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.3.1</version>
+            <version>1.3.3</version>
         </dependency>
 
         <dependency>
