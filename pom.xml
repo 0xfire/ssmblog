@@ -20,7 +20,7 @@
         <spring.version>5.2.4.RELEASE</spring.version>
         <javax.servlet.version>4.0.1</javax.servlet.version>
         <jstl.version>1.2</jstl.version>
-        <mysql.connector.java.version>8.0.19</mysql.connector.java.version>
+        <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
         <druid.version>1.1.9</druid.version>
         <mybatis.version>3.5.4</mybatis.version>
         <mybatis.spring.version>2.0.3</mybatis.spring.version>
